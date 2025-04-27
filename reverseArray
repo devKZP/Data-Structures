@@ -1,0 +1,7 @@
+function reverseArray(a) {
+   var newArr = [];
+   for(var i=a.length; i != -1; i--){
+    newArr.push(a[i]);
+   }
+   return newArr;
+}
