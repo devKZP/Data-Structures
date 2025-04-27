@@ -1,7 +1,7 @@
 /*
 stdin: a, an array of elements
 stdout: a new array with elements of a in reverse order
-Explanation:
+explanation:
 An array is indexed starting at 0. 
 To reverse the array, we start from the last valid index (a.length - 1) and iterate backward, 
 appending each element to a new array. The loop decrements until the first element is added, 
