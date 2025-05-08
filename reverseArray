@@ -15,3 +15,11 @@ function reverseArray(a) {
    }
    return newArr;
 }
+
+
+//Alternatively, if provided an string, I can reverse the string by converting it to array, 
+//Using the reverse method, and consolidating all array elements back into a string.
+
+function reverse(str) {
+  return str.split('').reverse().join('');
+}
