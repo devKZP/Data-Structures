@@ -1,0 +1,26 @@
+//Given an abitrary list of names, find the total number occurences of 'Kevin Zeng' in this list.
+
+const name_list = ["Kevin Zeng","John Doe", "Fred Luddy","Fred Luddy","John Doe","Kevin Zeng","Kevin Zeng","Amy Callie","Allison Smith"]
+const target_name = 'Kevin Zeng'
+console.log(target_name + " appears " + getNameOccurenceCount(name_list,target_name) + " times on the list");
+
+//@@@ parm1: the array
+//@@@ parm2: the 'name' that we want to retrieve the count for
+
+
+function getNameOccurenceCount(list, target){
+const namesMap = {};
+let count = 0;
+
+for (let element of list){
+namesMap[element] = (namesMap[element] || 0) + 1;
+}
+console.log(JSON.stringify(namesMap))
+return namesMap[target]
+}
+
+
+/* OUTPUT 
+{"Kevin Zeng":3,"John Doe":2,"Fred Luddy":2,"Amy Callie":1,"Allison Smith":1}
+Kevin Zeng appears 3 times on the list
+*/
