@@ -1,0 +1,25 @@
+/*
+@Question: What consecutive pair of 5 results in the maximum sum?
+*/
+const arrNums = [10,20,30,40,50,60,20,30,40,40,50,100,200,30,200,300,30,20,45];
+
+let windowSize = 5;
+let windowSum = 0;
+let maxSum = 0
+let maxSubArr = "";
+
+for(let i=0; i<windowSize; i++){
+windowSum += arrNums[i];
+}
+maxSum = windowSum;
+
+for(let rSide=windowSize; rSide<arrNums.length; rSide++){
+windowSum = windowSum + arrNums[rSide] - arrNums[rSide-windowSize];
+if(windowSum > maxSum){
+    maxSum = windowSum
+    maxSubArr = arrNums.slice(rSide-windowSize+1,rSide+1);
+}
+}
+
+console.log(maxSum)
+console.log(maxSubArr.toString());
