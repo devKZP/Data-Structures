@@ -1,0 +1,84 @@
+//linked list
+
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
+
+    insertFirst(data) {
+        const newNode = new Node(data);
+        this.head = newNode;
+        newNode.next = this.head;
+        this.size++;
+    }
+
+    insertLast(data) {
+        const newNode = new Node(data);
+        if (!this.head) {
+            this.head = newNode;
+        } else {
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        this.size++;
+    }
+
+    insertAt(data, index) {
+        if (index < 0 || index > this.size) {
+            console.log("Index out of bounds");
+            return;
+        }
+
+        const newNode = new Node(data);
+
+        // Insert at the beginning
+        if (index === 0) {
+          this.insertFirst(data);
+        } else {
+            let current = this.head;
+            let previous;
+
+            // Traverse to the node just before the insertion point
+            for (let i = 0; i < index; i++) {
+                previous = current;
+                current = current.next;
+            }
+            // Insert the new node
+            previous.next = newNode;
+            newNode.next = current;
+        }
+
+        this.size++;
+    }
+
+    printList() {
+        let current = this.head;
+        while (current) {
+            console.log(current.data);
+            current = current.next;
+        }
+    }
+
+
+}
+
+const ll = new LinkedList();
+ll.insertFirst(50);
+ll.insertLast(200);
+ll.insertAt(100,1);
+ll.insertAt(150,2);
+
+
+//manually iterating through the linked list
+
