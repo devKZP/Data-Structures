@@ -1,5 +1,4 @@
-//linked list
-
+// Node class representing each element in the list
 class Node {
     constructor(data) {
         this.data = data;
@@ -7,19 +6,22 @@ class Node {
     }
 }
 
+// LinkedList class with insertion methods
 class LinkedList {
     constructor() {
         this.head = null;
         this.size = 0;
     }
 
+    // Insert at the beginning
     insertFirst(data) {
         const newNode = new Node(data);
+        newNode.next = this.head; 
         this.head = newNode;
-        newNode.next = this.head;
         this.size++;
     }
 
+    // Insert at the end
     insertLast(data) {
         const newNode = new Node(data);
         if (!this.head) {
@@ -34,6 +36,7 @@ class LinkedList {
         this.size++;
     }
 
+    // Insert at a specific index
     insertAt(data, index) {
         if (index < 0 || index > this.size) {
             console.log("Index out of bounds");
@@ -44,24 +47,27 @@ class LinkedList {
 
         // Insert at the beginning
         if (index === 0) {
-          this.insertFirst(data);
-        } else {
-            let current = this.head;
-            let previous;
-
-            // Traverse to the node just before the insertion point
-            for (let i = 0; i < index; i++) {
-                previous = current;
-                current = current.next;
-            }
-            // Insert the new node
-            previous.next = newNode;
-            newNode.next = current;
+            this.insertFirst(data);
+            return; // Avoid double increment
         }
+
+        let current = this.head;
+        let previous;
+
+        // Traverse to the node just before the insertion point
+        for (let i = 0; i < index; i++) {
+            previous = current;
+            current = current.next;
+        }
+
+        // Insert the new node
+        previous.next = newNode;
+        newNode.next = current;
 
         this.size++;
     }
 
+    // Print the list
     printList() {
         let current = this.head;
         while (current) {
@@ -69,16 +75,13 @@ class LinkedList {
             current = current.next;
         }
     }
-
-
 }
 
+// Example usage:
 const ll = new LinkedList();
-ll.insertFirst(50);
-ll.insertLast(200);
-ll.insertAt(100,1);
-ll.insertAt(150,2);
+ll.insertFirst(50);     // List: 50
+ll.insertLast(200);     // List: 50 -> 200
+ll.insertAt(100, 1);    // List: 50 -> 100 -> 200
+ll.insertAt(150, 2);    // List: 50 -> 100 -> 150 -> 200
 
-
-//manually iterating through the linked list
-
+ll.printList(); // Output: 50 100 150 200
